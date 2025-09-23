@@ -1,9 +1,9 @@
+import Link from "next/link";
 import {
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenu,
     NavigationMenuList,
-    NavigationMenuContent
 } from "@/components/ui/navigation-menu";
 
 export default function NavBar() {
@@ -13,13 +13,19 @@ export default function NavBar() {
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <NavigationMenuLink href="/" className="text-lg">Home</NavigationMenuLink>
+                            <NavigationMenuLink asChild className="text-lg">
+                                <Link href="/">Home</Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink href="/examples" className="text-lg">Examples</NavigationMenuLink>
+                            <NavigationMenuLink asChild className="text-lg">
+                                <Link href="/examples">Examples</Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink href="/documentation" className="text-lg">Documentation</NavigationMenuLink>
+                            <NavigationMenuLink asChild className="text-lg">
+                                <Link href="/documentation">Documentation</Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
                     </NavigationMenuList>
                 </NavigationMenu>
