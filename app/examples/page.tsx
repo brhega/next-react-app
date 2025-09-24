@@ -7,7 +7,12 @@ export default function ExamplesPage() {
                 Examples
             </h2>
             <div className="my-4">
-                <Link href="/examples/client-side-navigation" className="text-blue-600 underline">Client Side Navigation</Link>
+                <div>
+                    <Link href="/examples/client-side-navigation" className="text-blue-600 underline">Client Side Navigation</Link>
+                </div>
+                <div>
+                    <Link href="/examples/basic-form" className="text-blue-600 underline">Basic Form</Link>
+                </div>
             </div>
         </div>
     );
