@@ -2,13 +2,12 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { set, z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,24 +16,35 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { ChevronLeftIcon } from "lucide-react"
+import { useState } from "react"
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  username: z.string()
+    .min(1, { message: "Username is required." })
+    .min(8, { message: "Username must be at least 8 characters." }),
+  email: z.string()
+    .min(1, { message: "Email is required." })
+    .regex(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      { message: "Not a valid email." }
+    ),
+    phone: z.string().optional(),
 })
 
 export default function ProfileForm() {
+    const [showDialog, setShowDialog] = useState(false);
+    
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+        username: "",
+        email: "",
     },
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    setShowDialog(true);
     console.log(values)
   }
 
@@ -51,26 +61,72 @@ export default function ProfileForm() {
             </h3>
         </div>
 
-        <div className="my-5">
+        <div className="my-5 w-1/4">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
-                    control={form.control}
-                    name="username"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                            <Input placeholder="shadcn" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Username</FormLabel>
+                            <FormControl>
+                                <Input placeholder="shadcn" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input placeholder="shadcn@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                                <Input placeholder="(123) 456-7890" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
                     />
                     <Button type="submit">Submit</Button>
                 </form>
             </Form>
         </div>
+
+        <AlertDialog open={showDialog} onOpenChange={setShowDialog}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Form Submitted Successfully</AlertDialogTitle>
+                        <AlertDialogDescription asChild>
+                            <div className="space-y-1">
+                                <div>Name: {form.getValues("username")}</div>
+                                <div>Email: {form.getValues("email")}</div>
+                                <div>Phone: {form.getValues("phone")}</div>
+                            </div>
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => setShowDialog(false)}>Close</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
     </div>
+
+    
   )
 }
