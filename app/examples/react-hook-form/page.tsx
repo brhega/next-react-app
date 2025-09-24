@@ -45,7 +45,6 @@ export default function ProfileForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     setShowDialog(true);
-    console.log(values)
   }
 
   return (
