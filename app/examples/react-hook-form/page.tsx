@@ -61,6 +61,21 @@ export default function ProfileForm() {
             </h3>
         </div>
 
+        <div className="my-4">
+            <p>This example uses the following tools to improve form functionality:</p>
+            <ul className="list-disc pl-5">
+                <li>
+                    <a href="https://react-hook-form.com/" target="_blank" className="text-blue-600 underline">React Hook Form</a> - for managing form state.
+                </li>
+                <li>
+                    <a href="https://zod.dev/" target="_blank" className="text-blue-600 underline">Zod</a> - for schema validation.
+                </li>
+                <li>
+                    <a href="https://ui.shadcn.com/docs/components/form" target="_blank" className="text-blue-600 underline">shadcn/ui Form Components</a> - for built in, easy to use form components.
+                </li>
+            </ul>
+        </div>
+
         <div className="my-5 w-1/4">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -126,7 +141,5 @@ export default function ProfileForm() {
                 </AlertDialogContent>
             </AlertDialog>
     </div>
-
-    
   )
 }
