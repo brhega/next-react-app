@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
@@ -5,7 +7,7 @@ import { Suspense } from "react";
 import ProductDetails from "./product-details";
 import ProductDetailsSkeleton from "./product-details-skeleton";
 
-export default async function Page() {
+export default function Page() {
     return (
     <div >
        <div className="flex gap-4">

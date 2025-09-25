@@ -2,11 +2,15 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { loadProduct, Product } from "@/lib/api/api-client";
+import { fetchProduct, Product } from "@/lib/api/api-client";
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Image from "next/image";
 
 export default function ProductDetails() {
-    const product = loadProduct().data;
+    const { data: product } = useSuspenseQuery<Product>({
+        queryKey: ['product', 1],
+        queryFn: () => fetchProduct(1)
+    });
 
     return (
         <div>
