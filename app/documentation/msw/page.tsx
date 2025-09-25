@@ -41,7 +41,7 @@ export default function MSWPage() {
                 <p>Install MSW:</p>
                 <CodeBlock
                     language="bash"
-                    code="npm install msw --save-dev"
+                    code="npm i msw --save-dev"
                     title="Installation"
                 />
             </div>

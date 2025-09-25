@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 export interface Product {
     imageUrl: string;
@@ -23,7 +23,7 @@ export interface Product {
 // }
 
 export function loadProduct() {
-    const { isPending, error, data } = useQuery<Product>({
+    const data = useSuspenseQuery<Product>({
         queryKey: ["product"],
         queryFn: () =>
         fetch('https://api.myexampleserver.com/products/1').then(res =>
@@ -31,5 +31,5 @@ export function loadProduct() {
         )
     });
 
-    return { isPending, error, data };
+    return data;
 }

@@ -1,12 +1,12 @@
-`use client`
+'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { loadProduct, Product } from "@/lib/api/api-client";
 import Image from "next/image";
 
-export default async function ProductDetails() {
-    const product = await loadProduct();
+export default function ProductDetails() {
+    const product = loadProduct().data;
 
     return (
         <div>

@@ -41,7 +41,7 @@ export default function TanStackQueryPage() {
                 <p>Install TanStack Query:</p>
                 <CodeBlock
                     language="bash"
-                    code="npm install @tanstack/react-query"
+                    code="npm i @tanstack/react-query"
                     title="Installation"
                 />
             </div>
