@@ -1,3 +1,4 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function Home() {
@@ -48,13 +49,11 @@ export default function Home() {
         <h2 className="scroll-m-20 text-2xl font-bold tracking-tight text-center mb-8">Learning Tools</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
           {tools.map((tool) => (
-            <Link
-              key={tool.name}
-              href={tool.href}
-              className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors"
-            >
-              <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">{tool.name}</h5>
-              <p className="font-normal text-gray-700">{tool.description}</p>
+            <Link key={tool.name} href={tool.href}>
+              <Card className="shadow hover:bg-gray-50 transition-colors h-full">
+                <CardHeader className="font-bold text-xl tracking-tight text-gray-900">{tool.name}</CardHeader>
+                <CardContent>{tool.description}</CardContent>
+              </Card>
             </Link>
           ))}
         </div>
