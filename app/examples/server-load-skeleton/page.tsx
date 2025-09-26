@@ -27,9 +27,9 @@ export default function Page() {
             </h3>
             <ul>
                 <li>React component waiting on a server response</li>
-                <li>Skeleton from Shadcn is shown while loading using React's Suspense</li>
+                <li>Skeleton from Shadcn is shown while loading using loading state from TanStack Query</li>
                 <li>The server request is put together via TanStack Query</li>
-                <li>The server request is intercepted and the response is mocked via Mock Service Worker</li>
+                <li>The server request is intercepted and the response is mocked via Mock Service Worker (simulating 1.5 second delay)</li>
             </ul>
         </div>
 
