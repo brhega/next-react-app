@@ -3,14 +3,23 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { fetchProduct, Product } from "@/lib/api/api-client";
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Image from "next/image";
+import ProductDetailsSkeleton from './product-details-skeleton';
 
 export default function ProductDetails() {
-    const { data: product } = useSuspenseQuery<Product>({
+    const { data: product, isLoading } = useQuery<Product>({ 
         queryKey: ['product', 1],
         queryFn: () => fetchProduct(1)
     });
+
+    if (isLoading) {
+        return <ProductDetailsSkeleton />;
+    }
+
+    if (!product) {
+        return <div>Product not found</div>;
+    }
 
     return (
         <div>

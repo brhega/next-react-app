@@ -34,9 +34,7 @@ export default function Page() {
         </div>
 
         <div className="my-8">
-            <Suspense fallback={<ProductDetailsSkeleton />}>
-                <ProductDetails />
-            </Suspense>
+            <ProductDetails />
         </div>
 
     </div>
