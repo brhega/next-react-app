@@ -19,6 +19,9 @@ export default function ExamplesPage() {
                 <div>
                     <Link href="/examples/server-load-skeleton" className="text-blue-600 underline">Server Load with mocked response</Link>
                 </div>
+                <div>
+                    <Link href="/examples/search-page" className="text-blue-600 underline">Search Page</Link>
+                </div>
             </div>
         </div>
     );
