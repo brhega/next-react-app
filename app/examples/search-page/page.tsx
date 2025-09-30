@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
@@ -30,10 +31,14 @@ export default function Page() {
                 </ul>
             </div>
 
-            <SearchBar />
+            <Suspense fallback={<div>Loading search...</div>}>
+                <SearchBar />
+            </Suspense>
 
             <div className="my-16">
-                <ProductResults />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ProductResults />
+                </Suspense>
             </div>
         </div>
     );
